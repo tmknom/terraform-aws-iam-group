@@ -16,11 +16,55 @@ This module provides recommended settings.
 
 ## Usage
 
-Named `terraform-<PROVIDER>-<NAME>`. Module repositories must use this three-part name format.
+### Minimal
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/tmknom/terraform-aws-iam-group/master/install | sh -s terraform-aws-sample
-cd terraform-aws-sample
+```hcl
+module "iam_group" {
+  source = "git::https://github.com/tmknom/terraform-aws-iam-group.git?ref=tags/1.0.0"
+  name   = "minimal"
+  policy = "${data.aws_iam_policy_document.policy.json}"
+
+  users = [
+    "${aws_iam_user.user.name}",
+  ]
+}
+
+resource "aws_iam_user" "user" {
+  name = "minimal_user"
+}
+
+data "aws_iam_policy_document" "policy" {
+  statement {
+    effect    = "Allow"
+    actions   = ["ec2:Describe*"]
+    resources = ["*"]
+  }
+}
+```
+
+### Complete
+
+```hcl
+module "iam_group" {
+  source = "git::https://github.com/tmknom/terraform-aws-iam-group.git?ref=tags/1.0.0"
+  name   = "complete"
+  policy = "${data.aws_iam_policy_document.policy.json}"
+
+  users = [
+    "${aws_iam_user.user.name}",
+  ]
+
+  path        = "/ec2/"
+  description = "Describe EC2"
+}
+
+resource "aws_iam_user" "user" {
+  name = "complete_user"
+}
+
+data "aws_iam_policy_document" "policy" {
+  # Omitted below.
+}
 ```
 
 ## Examples
