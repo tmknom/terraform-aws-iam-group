@@ -13,3 +13,9 @@ resource "aws_iam_group_membership" "default" {
   group = "${aws_iam_group.default.name}"
   users = ["${var.users}"]
 }
+
+# https://www.terraform.io/docs/providers/aws/r/iam_policy.html
+resource "aws_iam_policy" "default" {
+  name   = "${var.name}"
+  policy = "${var.policy}"
+}
