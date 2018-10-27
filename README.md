@@ -4,7 +4,7 @@
 [![GitHub tag](https://img.shields.io/github/tag/tmknom/terraform-aws-iam-group.svg)](https://registry.terraform.io/modules/tmknom/iam-group/aws)
 [![License](https://img.shields.io/github/license/tmknom/terraform-aws-iam-group.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Terraform module template following [Standard Module Structure](https://www.terraform.io/docs/modules/create.html#standard-module-structure).
+Terraform module which creates IAM Group and IAM Policy resources on AWS.
 
 ## Usage
 
