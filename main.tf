@@ -5,6 +5,8 @@
 # https://www.terraform.io/docs/providers/aws/r/iam_group.html
 resource "aws_iam_group" "default" {
   name = "${var.name}"
+
+  path = "${var.path}"
 }
 
 # https://www.terraform.io/docs/providers/aws/r/iam_group_membership.html
@@ -18,6 +20,8 @@ resource "aws_iam_group_membership" "default" {
 resource "aws_iam_policy" "default" {
   name   = "${var.name}"
   policy = "${var.policy}"
+
+  path = "${var.path}"
 }
 
 # https://www.terraform.io/docs/providers/aws/r/iam_group_policy_attachment.html
