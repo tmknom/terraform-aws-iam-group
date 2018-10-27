@@ -42,6 +42,11 @@ output "iam_policy_arn" {
   description = "The ARN assigned by AWS to this policy."
 }
 
+output "iam_policy_description" {
+  value       = "${aws_iam_policy.default.description}"
+  description = "The description of the policy."
+}
+
 output "iam_policy_name" {
   value       = "${aws_iam_policy.default.name}"
   description = "The name of the policy."
