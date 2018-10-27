@@ -26,3 +26,8 @@ output "iam_group_unique_id" {
   value       = "${aws_iam_group.default.unique_id}"
   description = "The unique ID assigned by AWS."
 }
+
+output "iam_group_membership_name" {
+  value       = "${aws_iam_group_membership.default.name}"
+  description = "The name to identify the Group Membership."
+}
