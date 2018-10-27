@@ -4,15 +4,67 @@
 [![GitHub tag](https://img.shields.io/github/tag/tmknom/terraform-aws-iam-group.svg)](https://registry.terraform.io/modules/tmknom/iam-group/aws)
 [![License](https://img.shields.io/github/license/tmknom/terraform-aws-iam-group.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Terraform module template following [Standard Module Structure](https://www.terraform.io/docs/modules/create.html#standard-module-structure).
+Terraform module which creates IAM Group and IAM Policy resources on AWS.
+
+## Description
+
+Provision IAM Group and its own [Customer Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#customer-managed-policies).
+This module provides recommended settings.
+
+- Use groups to assign permissions to users
+- Use managed policies instead of inline policies
 
 ## Usage
 
-Named `terraform-<PROVIDER>-<NAME>`. Module repositories must use this three-part name format.
+### Minimal
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/tmknom/terraform-aws-iam-group/master/install | sh -s terraform-aws-sample
-cd terraform-aws-sample
+```hcl
+module "iam_group" {
+  source = "git::https://github.com/tmknom/terraform-aws-iam-group.git?ref=tags/1.0.0"
+  name   = "minimal"
+  policy = "${data.aws_iam_policy_document.policy.json}"
+
+  users = [
+    "${aws_iam_user.user.name}",
+  ]
+}
+
+resource "aws_iam_user" "user" {
+  name = "minimal_user"
+}
+
+data "aws_iam_policy_document" "policy" {
+  statement {
+    effect    = "Allow"
+    actions   = ["ec2:Describe*"]
+    resources = ["*"]
+  }
+}
+```
+
+### Complete
+
+```hcl
+module "iam_group" {
+  source = "git::https://github.com/tmknom/terraform-aws-iam-group.git?ref=tags/1.0.0"
+  name   = "complete"
+  policy = "${data.aws_iam_policy_document.policy.json}"
+
+  users = [
+    "${aws_iam_user.user.name}",
+  ]
+
+  path        = "/ec2/"
+  description = "Describe EC2"
+}
+
+resource "aws_iam_user" "user" {
+  name = "complete_user"
+}
+
+data "aws_iam_policy_document" "policy" {
+  # Omitted below.
+}
 ```
 
 ## Examples
@@ -22,11 +74,30 @@ cd terraform-aws-sample
 
 ## Inputs
 
-Write your Terraform module inputs.
+| Name        | Description                                           |  Type  |        Default         | Required |
+| ----------- | ----------------------------------------------------- | :----: | :--------------------: | :------: |
+| description | Description of the policy.                            | string | `Managed by Terraform` |    no    |
+| name        | The group's name.                                     | string |           -            |   yes    |
+| path        | Path in which to create the group and the policy.     | string |          `/`           |    no    |
+| policy      | The policy document. This is a JSON formatted string. | string |           -            |   yes    |
+| users       | A list of IAM User names to associate with the Group. |  list  |        `<list>`        |    no    |
 
 ## Outputs
 
-Write your Terraform module outputs.
+| Name                      | Description                                |
+| ------------------------- | ------------------------------------------ |
+| iam_group_arn             | The ARN assigned by AWS for this group.    |
+| iam_group_id              | The group's ID.                            |
+| iam_group_membership_name | The name to identify the Group Membership. |
+| iam_group_name            | The group's name.                          |
+| iam_group_path            | The path of the group in IAM.              |
+| iam_group_unique_id       | The unique ID assigned by AWS.             |
+| iam_policy_arn            | The ARN assigned by AWS to this policy.    |
+| iam_policy_description    | The description of the policy.             |
+| iam_policy_document       | The policy document.                       |
+| iam_policy_id             | The policy's ID.                           |
+| iam_policy_name           | The name of the policy.                    |
+| iam_policy_path           | The path of the policy in IAM.             |
 
 ## Development
 
