@@ -7,6 +7,12 @@ variable "name" {
   description = "The group's name."
 }
 
+variable "path" {
+  default     = "/"
+  type        = "string"
+  description = "Path in which to create the group and the policy."
+}
+
 variable "users" {
   default     = []
   type        = "list"
