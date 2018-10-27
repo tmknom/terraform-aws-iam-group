@@ -23,3 +23,9 @@ variable "policy" {
   type        = "string"
   description = "The policy document. This is a JSON formatted string."
 }
+
+variable "description" {
+  default     = "Managed by Terraform"
+  type        = "string"
+  description = "Description of the policy."
+}

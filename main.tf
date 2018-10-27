@@ -21,7 +21,8 @@ resource "aws_iam_policy" "default" {
   name   = "${var.name}"
   policy = "${var.policy}"
 
-  path = "${var.path}"
+  path        = "${var.path}"
+  description = "${var.description}"
 }
 
 # https://www.terraform.io/docs/providers/aws/r/iam_group_policy_attachment.html

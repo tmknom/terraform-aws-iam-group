@@ -30,6 +30,10 @@ output "iam_policy_arn" {
   value = "${module.iam_group.iam_policy_arn}"
 }
 
+output "iam_policy_description" {
+  value = "${module.iam_group.iam_policy_description}"
+}
+
 output "iam_policy_name" {
   value = "${module.iam_group.iam_policy_name}"
 }
