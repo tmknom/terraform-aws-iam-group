@@ -17,12 +17,8 @@ resource "aws_iam_user" "user" {
 
 data "aws_iam_policy_document" "policy" {
   statement {
-    effect = "Allow"
-
-    actions = [
-      "ec2:Describe*",
-    ]
-
+    effect    = "Allow"
+    actions   = ["ec2:Describe*"]
     resources = ["*"]
   }
 }
