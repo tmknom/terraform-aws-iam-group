@@ -30,11 +30,30 @@ cd terraform-aws-sample
 
 ## Inputs
 
-Write your Terraform module inputs.
+| Name        | Description                                           |  Type  |        Default         | Required |
+| ----------- | ----------------------------------------------------- | :----: | :--------------------: | :------: |
+| description | Description of the policy.                            | string | `Managed by Terraform` |    no    |
+| name        | The group's name.                                     | string |           -            |   yes    |
+| path        | Path in which to create the group and the policy.     | string |          `/`           |    no    |
+| policy      | The policy document. This is a JSON formatted string. | string |           -            |   yes    |
+| users       | A list of IAM User names to associate with the Group. |  list  |        `<list>`        |    no    |
 
 ## Outputs
 
-Write your Terraform module outputs.
+| Name                      | Description                                |
+| ------------------------- | ------------------------------------------ |
+| iam_group_arn             | The ARN assigned by AWS for this group.    |
+| iam_group_id              | The group's ID.                            |
+| iam_group_membership_name | The name to identify the Group Membership. |
+| iam_group_name            | The group's name.                          |
+| iam_group_path            | The path of the group in IAM.              |
+| iam_group_unique_id       | The unique ID assigned by AWS.             |
+| iam_policy_arn            | The ARN assigned by AWS to this policy.    |
+| iam_policy_description    | The description of the policy.             |
+| iam_policy_document       | The policy document.                       |
+| iam_policy_id             | The policy's ID.                           |
+| iam_policy_name           | The name of the policy.                    |
+| iam_policy_path           | The path of the policy in IAM.             |
 
 ## Development
 
