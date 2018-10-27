@@ -19,3 +19,9 @@ resource "aws_iam_policy" "default" {
   name   = "${var.name}"
   policy = "${var.policy}"
 }
+
+# https://www.terraform.io/docs/providers/aws/r/iam_group_policy_attachment.html
+resource "aws_iam_group_policy_attachment" "default" {
+  group      = "${aws_iam_group.default.name}"
+  policy_arn = "${aws_iam_policy.default.arn}"
+}
