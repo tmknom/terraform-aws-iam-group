@@ -8,7 +8,8 @@ Terraform module which creates IAM Group and IAM Policy resources on AWS.
 
 ## Description
 
-Provision IAM Group and its own [Customer Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#customer-managed-policies).
+Provision [IAM Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html)
+and its own [Customer Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#customer-managed-policies).
 This module provides recommended settings.
 
 - Use groups to assign permissions to users
