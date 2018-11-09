@@ -77,11 +77,11 @@ data "aws_iam_policy_document" "policy" {
 
 | Name        | Description                                           |  Type  |        Default         | Required |
 | ----------- | ----------------------------------------------------- | :----: | :--------------------: | :------: |
-| description | Description of the policy.                            | string | `Managed by Terraform` |    no    |
 | name        | The group's name.                                     | string |           -            |   yes    |
-| path        | Path in which to create the group and the policy.     | string |          `/`           |    no    |
 | policy      | The policy document. This is a JSON formatted string. | string |           -            |   yes    |
-| users       | A list of IAM User names to associate with the Group. |  list  |        `<list>`        |    no    |
+| description | Description of the policy.                            | string | `Managed by Terraform` |    no    |
+| path        | Path in which to create the group and the policy.     | string |          `/`           |    no    |
+| users       | A list of IAM User names to associate with the Group. |  list  |          `[]`          |    no    |
 
 ## Outputs
 
