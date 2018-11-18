@@ -1,6 +1,6 @@
-# Resource Configuration
+# Terraform module which creates IAM Group and IAM Policy resources on AWS.
 #
-# https://www.terraform.io/docs/configuration/resources.html
+# https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html
 
 # https://www.terraform.io/docs/providers/aws/r/iam_group.html
 resource "aws_iam_group" "default" {
