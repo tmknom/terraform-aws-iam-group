@@ -1,7 +1,3 @@
-# Output Configuration
-#
-# https://www.terraform.io/docs/configuration/outputs.html
-
 output "iam_group_name" {
   value       = "${aws_iam_group.default.name}"
   description = "The group's name."
